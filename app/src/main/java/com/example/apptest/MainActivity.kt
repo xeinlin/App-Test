@@ -1,9 +1,11 @@
 package com.example.apptest
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.addCallback
 import com.example.apptest.databinding.ActivityMainBinding
 import java.util.Date
@@ -20,67 +22,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("TAG", "onCreate")
-        binding.tvGreeting.text = "Hi"
+        supportActionBar?.title = "Main Menu"
 
-        binding.btnShowTime.setOnClickListener {
-            this.count++
-            this.showCount()
+        binding.btnLifecycle.setOnClickListener {
+            this.gotoLifecycleScreen()
         }
-        binding.btnExit.setOnClickListener {
-            finish()
+
+        binding.btnBroadcast.setOnClickListener {
+            this.gotoBroadcastScreen()
         }
-        onBackPressedDispatcher.addCallback {
-            Log.d("TAG", "onBackPressedDispatcher")
-            finish()
-        }
-        this.showCount()
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        Log.d("TAG", "onSaveInstanceState")
+    private fun gotoLifecycleScreen() {
+        //Toast.makeText(this, "Go to Lifecycle screen", Toast.LENGTH_LONG).show()
+        val intent = Intent(this, LifecycleActivity::class.java)
+        startActivity(intent)
     }
 
-    override fun onRestoreInstanceState(
-        savedInstanceState: Bundle?,
-        persistentState: PersistableBundle?
-    ) {
-        super.onRestoreInstanceState(savedInstanceState, persistentState)
-        Log.d("TAG", "onRestoreInstanceState")
-    }
-
-    private fun showCount() {
-        binding.tvGreeting.text = this.count.toString()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("TAG", "onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("TAG", "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("TAG", "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("TAG", "onStop")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d("TAG", "onRestart")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("TAG", "onDestroy")
+    private fun gotoBroadcastScreen() {
+        //Toast.makeText(this, "Go to broadcast receiver", Toast.LENGTH_LONG).show()
+        val intent = Intent(this, BroadcastActivity::class.java)
+        startActivity(intent)
     }
 }
