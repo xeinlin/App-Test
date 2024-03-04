@@ -9,24 +9,34 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import com.example.apptest.BaseActivity
 import com.example.apptest.databinding.ActivityBroadcastBinding
+import com.example.apptest.lifecycle.LifecycleActivity
 
-class BroadcastActivity : AppCompatActivity() {
+class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
 
-    private lateinit var binding: ActivityBroadcastBinding
+    companion object {
+
+        const val CUSTOM_ACTION_NAME = "customBroadcastAction"
+
+        fun getInstance(context: Context): Intent {
+            return Intent(context, BroadcastActivity::class.java)
+        }
+
+    }
 
     private lateinit var timeReceiver: TickTimeReceiver
     private lateinit var customReceiver: CustomReceiver
-
     private val customActionName = "customBoradcastAction"
+    override val pageTitle: String get() = "Broadcast Receiver"
+
+    override fun setUpViewBinding(layoutInflater: LayoutInflater): ActivityBroadcastBinding {
+        return ActivityBroadcastBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityBroadcastBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        supportActionBar?.title = "Broadcast Receiver"
 
         timeReceiver = TickTimeReceiver()
         customReceiver = CustomReceiver()
