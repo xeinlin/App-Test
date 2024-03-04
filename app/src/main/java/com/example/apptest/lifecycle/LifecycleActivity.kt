@@ -1,4 +1,4 @@
-package com.example.apptest
+package com.example.apptest.lifecycle
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -3,13 +3,9 @@ package com.example.apptest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.addCallback
+import com.example.apptest.broadcast.BroadcastActivity
 import com.example.apptest.databinding.ActivityMainBinding
-import java.util.Date
-import kotlin.math.log
+import com.example.apptest.lifecycle.LifecycleActivity
 
 class MainActivity : AppCompatActivity() {
 

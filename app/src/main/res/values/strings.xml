@@ -3,4 +3,6 @@
 
     <string name="broadcast_receiver">Broadcast Receiver</string>
     <string name="activity_lifecycle">Activity_Lifecycle</string>
+    <string name="Button_send_custom_broadcast">Send Custom Broadcast</string>
+
 </resources>
