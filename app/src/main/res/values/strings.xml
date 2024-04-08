@@ -3,6 +3,19 @@
 
     <string name="broadcast_receiver">Broadcast Receiver</string>
     <string name="activity_lifecycle">Activity_Lifecycle</string>
+    <string name="intent">Intent</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="pick_picture">pick_picture</string>
+    <string name="pick_image_from_gallary">pick_image_from_gallary</string>
+    <string name="task_and_back_stack">Task and Back Stack</string>
+
     <string name="Button_send_custom_broadcast">Send Custom Broadcast</string>
+    <string name="button_open_link_in_broswer">button_open_link_in_broswer</string>
+    <string name="button_call_phone">button_call_phone</string>
+    <string name="button_open_in_map_view">Button_open_in_map_view</string>
+    <string name="button_share_content">btn_share_content</string>
+    <string name="button_go_to_activity_one">Activity_one (Single Top) </string>
+    <string name="button_go_to_activity_two">Activity_two (default) </string>
+
 
 </resources>

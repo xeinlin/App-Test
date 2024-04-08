@@ -2,12 +2,13 @@ package com.example.apptest
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.example.apptest.broadcast.BroadcastActivity
 import com.example.apptest.databinding.ActivityMainBinding
+import com.example.apptest.intent.IntentActivity
 import com.example.apptest.lifecycle.LifecycleActivity
+import java.util.Date
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -38,17 +39,26 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.btnBroadcast.setOnClickListener {
             this.gotoBroadcastScreen()
         }
+
+        binding.btnIntent.setOnClickListener {
+            this.gotoIntentActivity()
+        }
+
     }
 
     private fun gotoLifecycleScreen() {
-        //Toast.makeText(this, "Go to Lifecycle screen", Toast.LENGTH_LONG).show()
         val intent = LifecycleActivity.getInstance(this)
         startActivity(intent)
     }
 
     private fun gotoBroadcastScreen() {
-        //Toast.makeText(this, "Go to broadcast receiver", Toast.LENGTH_LONG).show()
         val intent = BroadcastActivity.getInstance(this)
         startActivity(intent)
     }
+
+    private fun gotoIntentActivity() {
+        val intent = IntentActivity.getInstance(this, Date().toString())
+        startActivity(intent)
+    }
+
 }

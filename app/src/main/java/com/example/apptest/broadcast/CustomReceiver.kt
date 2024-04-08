@@ -7,7 +7,7 @@ import android.util.Log
 
 class CustomReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        Log.d("TAG", "CustomReceiver     Received")
+        Log.d("TAG", "CustomReceiver Received")
     }
 
 }
