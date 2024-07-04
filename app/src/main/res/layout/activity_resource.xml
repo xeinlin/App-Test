@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding.large"
+    tools:context=".resource.ResourceActivity">
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_resource_subtitle"
+        android:textSize="@dimen/text.subtitle" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/spacing.large" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_change_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_language_change" />
+
+        <Button
+            android:id="@+id/btn_change_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_change_theme" />
+
+        <Switch
+            android:id="@+id/switchTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Dark mode"
+            tools:ignore="HardcodedText,UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_string_resources"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_string_resources"
+            android:textSize="@dimen/text.title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_dynamic_string"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin.medium"
+            android:text="@string/label_dynamic_string"
+            android:textSize="@dimen/text.normal" />
+
+        <TextView
+            android:id="@+id/tv_localized_string"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin.medium"
+            android:text="@string/label_localized_string"
+            android:textSize="@dimen/text.normal" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin.large" />
+
+    </LinearLayout>
+
+</LinearLayout>

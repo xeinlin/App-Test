@@ -15,17 +15,41 @@
         android:theme="@style/Theme.AppTest"
         tools:targetApi="31">
         <activity
-            android:name=".taskandbackstack.ThreeActivity"
+            android:name=".resource.ResourceActivity"
             android:exported="false" />
         <activity
-            android:name=".taskandbackstack.TwoActivity"
+            android:name=".userinterface.recyclerview.RecyclerViewActivity"
             android:exported="false" />
         <activity
-            android:name=".taskandbackstack.OneActivity"
+            android:name=".userinterface.gridview.GridViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userinterface.listview.SpinnerViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userinterface.listview.ListViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userinterface.tabs.TabsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userinterface.drawer.DrawerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userinterface.UserInterfaceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TaskandBackStack.ThreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TaskandBackStack.TwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TaskandBackStack.OneActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".taskandbackstack.TaskandBackstackActivity"
+            android:name=".TaskandBackStack.TaskandBackStackActivity"
             android:exported="false" />
         <activity
             android:name=".intent.IntentActivity"
@@ -38,7 +62,9 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Splash">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

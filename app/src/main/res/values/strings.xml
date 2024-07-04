@@ -5,17 +5,75 @@
     <string name="activity_lifecycle">Activity_Lifecycle</string>
     <string name="intent">Intent</string>
     <string name="take_picture">Take Picture</string>
+
     <string name="pick_picture">pick_picture</string>
     <string name="pick_image_from_gallary">pick_image_from_gallary</string>
     <string name="task_and_back_stack">Task and Back Stack</string>
-
     <string name="Button_send_custom_broadcast">Send Custom Broadcast</string>
+
     <string name="button_open_link_in_broswer">button_open_link_in_broswer</string>
     <string name="button_call_phone">button_call_phone</string>
     <string name="button_open_in_map_view">Button_open_in_map_view</string>
     <string name="button_share_content">btn_share_content</string>
+
     <string name="button_go_to_activity_one">Activity_one (Single Top) </string>
     <string name="button_go_to_activity_two">Activity_two (default) </string>
+    <string name="button_activity_one_single_top">Activity One (Single Top)</string>
+    <string name="button_activity_two_default">Activity two (default)</string>
 
+    <string name="button_activity_three_singlr_task">Activity Three (singlr task)</string>
+    <string name="user_interface">User Interface</string>
+    <string name="basic_views">Basic Views</string>
+    <string name="layouts">Layouts</string>
+    <string name="constraint_layout">Constraint Layout</string>
+
+    <string name="dialogs">Dialogs</string>
+    <string name="sheets">Sheets</string>
+    <string name="fragments">Fragments</string>
+    <string name="drawer">Drawer</string>
+
+    <string name="tabs">Tabs</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+
+    <string name="blue">Blue</string>
+    <string name="child_fragment">Child Fragment</string>
+    <string name="child_fragment2">Child fragment2</string>
+    <string name="hello">Hello!</string>
+
+    <string name="welcome_to_my_drawer">Welcome to my Drawer</string>
+    <string name="main">Main</string>
+    <string name="others">Others</string>
+    <string name="support">Support</string>
+
+    <string name="setting">Setting</string>
+    <string name="about">About</string>
+    <string name="sent">Sent</string>
+    <string name="draft">Draft</string>
+
+    <string name="trash">Trash</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send_fragment_page">Send Fragment</string>
+    <string name="trash_fragment">Trash Fragment</string>
+    w
+    <string name="draft_fragment">Draft Fragment</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_noti">Notification</string>
+    <string name="tab_setting">Setting</string>
+    <string name="recycler_view">Recycler View</string>
+    <string name="list_view">List View</string>
+    <string name="grid_view">Grid View</string>
+    <string name="spinner_view">Spinner</string>
+    <string name="resources">Resources</string>
+
+    <string name="label_resource_subtitle">Android resources will be testing in this page</string>
+    <string name="label_string_resources">String Resources</string>
+    <string name="label_dynamic_string">%1$s has %4$d %2$s %s and %5$d %3$s.</string>
+    <string name="label_localized_string">This is a localized string.</string>
+    <string name="button_language_change">Language Change</string>
+    <string name="button_change_theme">Change_Theme</string>
+    <string name="radio_button_light_theme">Light Theme</string>
+    <string name="radio_button_dark_theme">Dark Theme</string>
 
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding.large">30dp</dimen>
+    <dimen name="padding.medium">20dp</dimen>
+    <dimen name="padding.small">10dp</dimen>
+
+    <dimen name="margin.large">30dp</dimen>
+    <dimen name="margin.medium">20dp</dimen>
+    <dimen name="margin.small">10dp</dimen>
+    <dimen name="margin.tiny">5dp</dimen>
+
+    <dimen name="spacing.large">30dp</dimen>
+    <dimen name="spacing.medium">20dp</dimen>
+    <dimen name="spacing.small">10dp</dimen>
+    <dimen name="spacing.tiny">5dp</dimen>
+
+    <dimen name="text.header">30sp</dimen>
+    <dimen name="text.title">20sp</dimen>
+    <dimen name="text.subtitle">18sp</dimen>
+    <dimen name="text.upper_normal">16sp</dimen>
+    <dimen name="text.normal">14sp</dimen>
+    <dimen name="text.lower_normal">13sp</dimen>
+    <dimen name="text.small">12sp</dimen>
+    <dimen name="text.tiny">11sp</dimen>
+</resources>

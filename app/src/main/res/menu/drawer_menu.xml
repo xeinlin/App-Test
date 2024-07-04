@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group_one"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/send"
+            android:checked="true"
+            android:icon="@drawable/ic_send"
+            android:title="@string/sent" />
+        <item
+            android:id="@+id/draft"
+            android:icon="@drawable/ic_draft"
+            android:title="@string/draft" />
+        <item
+            android:id="@+id/trash"
+            android:icon="@drawable/ic_trash"
+            android:title="@string/trash" />
+
+    </group>
+
+    <group
+        android:id="@+id/group_two"
+
+        android:checkableBehavior="single">
+        <item android:title="@string/others">
+            <menu>
+                <item
+                    android:id="@+id/setting"
+                    android:icon="@drawable/ic_setting"
+                    android:title="@string/setting" />
+                <item
+                    android:id="@+id/support"
+                    android:icon="@drawable/ic_support"
+                    android:title="@string/support" />
+                <item
+                    android:id="@+id/about"
+                    android:icon="@drawable/ic_about"
+                    android:title="@string/about" />
+            </menu>
+        </item>
+    </group>
+
+
+</menu>

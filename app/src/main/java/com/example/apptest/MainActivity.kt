@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.apptest.broadcast.BroadcastActivity
 import com.example.apptest.databinding.ActivityMainBinding
 import com.example.apptest.intent.IntentActivity
 import com.example.apptest.lifecycle.LifecycleActivity
+import com.example.apptest.resource.ResourceActivity
+import com.example.apptest.userinterface.UserInterfaceActivity
 import java.util.Date
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -27,7 +30,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(3000)
+        installSplashScreen()
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -44,6 +50,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             this.gotoIntentActivity()
         }
 
+        /*binding.btnTaskandBackStack.setOnClickListener {
+            this.gotoTaskandBackStack()
+        }*/
+
+        binding.btnUserInterface.setOnClickListener {
+            this.gotoUserInterface()
+        }
+
+        binding.btnResources.setOnClickListener {
+            this.gotoResources()
+        }
+
     }
 
     private fun gotoLifecycleScreen() {
@@ -58,6 +76,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun gotoIntentActivity() {
         val intent = IntentActivity.getInstance(this, Date().toString())
+        startActivity(intent)
+    }
+
+    /*private fun gotoTaskandBackStack() {
+        val intent = TaskandBackStackActivity.getInstance(this)
+        startActivity(intent)
+    }*/
+
+    private fun gotoUserInterface() {
+        val intent = UserInterfaceActivity.getInstance(this)
+        startActivity(intent)
+    }
+
+    private fun gotoResources() {
+        val intent = ResourceActivity.getInstance(this)
         startActivity(intent)
     }
 
