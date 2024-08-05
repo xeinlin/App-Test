@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.apptest.broadcast.BroadcastActivity
+import com.example.apptest.database.DatabaseActivity
 import com.example.apptest.databinding.ActivityMainBinding
 import com.example.apptest.intent.IntentActivity
 import com.example.apptest.lifecycle.LifecycleActivity
@@ -62,6 +63,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             this.gotoResources()
         }
 
+        /*binding.btnSharePreference.setOnClickListener {
+            this.goToSharePreferenceActivity()
+        }*/
+
+        binding.btnDatabase.setOnClickListener {
+            this.goToDatabaseActivity()
+        }
+
     }
 
     private fun gotoLifecycleScreen() {
@@ -91,6 +100,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun gotoResources() {
         val intent = ResourceActivity.getInstance(this)
+        startActivity(intent)
+    }
+
+    /*private fun goToSharePreferenceActivity() {
+        val intent = SharePreferenceActivity.getInstance(this)
+        startActivity(intent)
+    }*/
+
+    private fun goToDatabaseActivity() {
+        val intent = DatabaseActivity.getInstance(this)
         startActivity(intent)
     }
 

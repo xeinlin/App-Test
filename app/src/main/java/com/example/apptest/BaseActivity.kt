@@ -1,10 +1,10 @@
 package com.example.apptest
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 
@@ -21,9 +21,13 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         binding = setUpViewBinding(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("TAG", "pageTitle = $pageTitle ")
         supportActionBar?.title = pageTitle
         supportActionBar?.setDisplayHomeAsUpEnabled(this is MainActivity)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        Toast.makeText(this, "onNewIntent", Toast.LENGTH_LONG).show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
