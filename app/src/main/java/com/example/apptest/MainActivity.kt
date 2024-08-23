@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.apptest.api.NetworkActivity
 import com.example.apptest.broadcast.BroadcastActivity
 import com.example.apptest.database.DatabaseActivity
 import com.example.apptest.databinding.ActivityMainBinding
@@ -71,6 +72,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             this.goToDatabaseActivity()
         }
 
+        binding.btnNetworking.setOnClickListener {
+            this.goToNetworkActivity()
+        }
+
     }
 
     private fun gotoLifecycleScreen() {
@@ -110,6 +115,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun goToDatabaseActivity() {
         val intent = DatabaseActivity.getInstance(this)
+        startActivity(intent)
+    }
+
+    private fun goToNetworkActivity() {
+        val intent = NetworkActivity.getInstance(this)
         startActivity(intent)
     }
 

@@ -75,8 +75,9 @@
     <string name="button_change_theme">Change_Theme</string>
     <string name="radio_button_light_theme">Light Theme</string>
     <string name="radio_button_dark_theme">Dark Theme</string>
-    <string name="string_sharepreference">Sharepreference</string>
+    <string name="string_sharepreference">Share preference</string>
     <string name="string_database">Database</string>
     <string name="but_button_save">Button save</string>
+    <string name="networking">Networking</string>
 
 </resources>

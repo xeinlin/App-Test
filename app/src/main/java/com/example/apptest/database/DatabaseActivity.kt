@@ -7,12 +7,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apptest.BaseActivity
+import com.example.apptest.R
 import com.example.apptest.database.entity.Product
 import com.example.apptest.databinding.ActivityDatabaseBinding
 import com.example.apptest.databinding.ProductItemBinding
@@ -26,7 +28,7 @@ class DatabaseActivity : BaseActivity<ActivityDatabaseBinding>() {
 
     private val db by lazy { (application as MyApp).db }
 
-    private val adapter = MyAdapter(this::onClickProduct)
+    private val adapter = MyAdapter(this::onClickEdit, this::onClickDelete)
 
     companion object {
 
@@ -67,30 +69,62 @@ class DatabaseActivity : BaseActivity<ActivityDatabaseBinding>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun getProducts() {
-        AsyncTask.execute { // Insert Data
+    private fun getProducts() {
+        AsyncTask.execute {
             val products = this.db.productDAO().getAllProducts()
             runOnUiThread {
-                adapter.items = products
+                adapter.setNewData(products)
                 adapter.notifyDataSetChanged()
             }
         }
     }
 
-    private fun onClickProduct(product: Product) {
-        showToast("Clicked ${product.name}")
+    private fun deleteProduct(product: Product) {
+        AsyncTask.execute {
+            this.db.productDAO().delete(product)
+            runOnUiThread {
+                adapter.removeItem(product)
+                showToast("Product deleted")
+            }
+        }
+    }
+
+    fun refreshAdapterForNewProduct(product: Product) {
+        runOnUiThread {
+            adapter.addItem(product)
+            showToast("Product added")
+        }
+    }
+
+    fun refreshAdapterForUpdatedProduct(product: Product) {
+        runOnUiThread {
+            adapter.updateItem(product)
+            showToast("Product updated")
+        }
+    }
+
+    private fun onClickEdit(product: Product) {
+        showDialogFragment(
+            AddProductFragment.getInstance(product),
+            animation = ScreenAnimation.ENTER_UP_EXIT_STAY
+        )
+    }
+
+    private fun onClickDelete(product: Product) {
+        this.deleteProduct(product)
     }
 
     private class MyAdapter(
-        private val onClickProduct: (Product) -> Unit
+        private val onClickEdit: (Product) -> Unit,
+        private val onClickDelete: (Product) -> Unit
     ) : RecyclerView.Adapter<MyViewHolder>() {
 
-        var items = listOf<Product>()
+        private var items = arrayListOf<Product>()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             return MyViewHolder(
                 ProductItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-                onClickProduct
+                onClickEdit, onClickDelete
             )
         }
 
@@ -105,14 +139,40 @@ class DatabaseActivity : BaseActivity<ActivityDatabaseBinding>() {
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             holder.setupData(items[position])
-            Log.d("TAG", "onBindViewHolder: $position")
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        fun setNewData(products: List<Product>) {
+            items.clear()
+            items.addAll(products)
+            notifyDataSetChanged()
+        }
+
+        fun addItem(product: Product) {
+            items.add(product)
+            notifyItemInserted(items.lastIndex)
+        }
+
+        fun removeItem(product: Product) {
+            val position = items.indexOf(product)
+            items.remove(product)
+            notifyItemRemoved(position)
+        }
+
+        fun updateItem(product: Product) {
+            val position = items.indexOfFirst { item ->
+                item.id == product.id
+            }
+            items[position] = product
+            notifyItemChanged(position)
         }
 
     }
 
     private class MyViewHolder(
         val binding: ProductItemBinding,
-        private val onClickProduct: (Product) -> Unit
+        private val onClickEdit: (Product) -> Unit,
+        private val onClickDelete: (Product) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
@@ -121,11 +181,27 @@ class DatabaseActivity : BaseActivity<ActivityDatabaseBinding>() {
             binding.tvDesc.text = product.description
             binding.tvPrice.text = "${product.price} MMK"
 
-            itemView.setOnClickListener {
-                onClickProduct.invoke(product)
-            }
             itemView.setOnLongClickListener {
-                // to do
+                val menu = PopupMenu(itemView.context, binding.tvTitle, Gravity.END)
+                menu.inflate(R.menu.product_item_menu)
+                menu.setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.edit -> {
+                            onClickEdit.invoke(product)
+                            true
+                        }
+
+                        R.id.delete -> {
+                            onClickDelete.invoke(product)
+                            true
+                        }
+
+                        else -> {
+                            false
+                        }
+                    }
+                }
+                menu.show()
                 true
             }
         }
@@ -136,5 +212,7 @@ class DatabaseActivity : BaseActivity<ActivityDatabaseBinding>() {
             binding.tvDesc.text = "Description"
             binding.tvPrice.text = "0 MMK"
         }
+
     }
+
 }
