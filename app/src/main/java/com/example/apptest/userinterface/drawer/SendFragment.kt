@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.apptest.databinding.FragmentDrawerSendBinding
-import com.example.apptest.userinterface.base_fragment.BaseFragment
+import com.example.apptest.userinterface.fragments.BaseFragment
 
 class SendFragment : BaseFragment<FragmentDrawerSendBinding>() {
 

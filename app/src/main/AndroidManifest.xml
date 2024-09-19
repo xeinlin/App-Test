@@ -16,6 +16,12 @@
         android:theme="@style/Theme.AppTest"
         tools:targetApi="31">
         <activity
+            android:name=".observer.ObserverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".di.hilt.HiltActivity"
+            android:exported="false" />
+        <activity
             android:name=".api.NetworkActivity"
             android:exported="false" />
         <activity

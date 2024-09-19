@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.apptest.databinding.FragmentChild2Binding
-import com.example.apptest.userinterface.base_fragment.BaseFragment
+import com.example.apptest.userinterface.fragments.BaseFragment
 
 
 class childFragment2 : BaseFragment<FragmentChild2Binding>() {

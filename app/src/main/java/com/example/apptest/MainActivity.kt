@@ -9,8 +9,10 @@ import com.example.apptest.api.NetworkActivity
 import com.example.apptest.broadcast.BroadcastActivity
 import com.example.apptest.database.DatabaseActivity
 import com.example.apptest.databinding.ActivityMainBinding
+import com.example.apptest.di.hilt.HiltActivity
 import com.example.apptest.intent.IntentActivity
 import com.example.apptest.lifecycle.LifecycleActivity
+import com.example.apptest.observer.ObserverActivity
 import com.example.apptest.resource.ResourceActivity
 import com.example.apptest.userinterface.UserInterfaceActivity
 import java.util.Date
@@ -76,6 +78,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             this.goToNetworkActivity()
         }
 
+        binding.btnHilt.setOnClickListener {
+            this.goToHiltActivity()
+        }
+
+        binding.btnObserver.setOnClickListener {
+            this.goToObserverActivity()
+        }
+
     }
 
     private fun gotoLifecycleScreen() {
@@ -120,6 +130,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun goToNetworkActivity() {
         val intent = NetworkActivity.getInstance(this)
+        startActivity(intent)
+    }
+
+    private fun goToHiltActivity() {
+        val intent = HiltActivity.getInstance(this)
+        startActivity(intent)
+    }
+
+    private fun goToObserverActivity() {
+        val intent = ObserverActivity.getInstance(this)
         startActivity(intent)
     }
 

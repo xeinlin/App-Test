@@ -2,7 +2,9 @@ package com.example.apptest.helper
 
 import android.app.Application
 import androidx.room.Room
+import com.example.apptest.database.DatabaseConfigs
 import com.example.apptest.database.MyDatabase
+import com.example.apptest.database.migration.Migration1to2
 
 class MyApp : Application() {
 
@@ -17,8 +19,13 @@ class MyApp : Application() {
 
     private fun initDatabase() {
         this.db = Room.databaseBuilder(
-            applicationContext, MyDatabase::class.java, "my-database"
-        ).allowMainThreadQueries().build()
+            applicationContext,
+            MyDatabase::class.java,
+            DatabaseConfigs.DATABASE_NAME
+        )
+            .addMigrations(Migration1to2())
+            .allowMainThreadQueries()
+            .build()
     }
 
 }

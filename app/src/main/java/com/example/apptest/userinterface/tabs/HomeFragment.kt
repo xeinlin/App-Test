@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.apptest.R
 import com.example.apptest.databinding.FragmentHomeBinding
-import com.example.apptest.userinterface.base_fragment.BaseFragment
+import com.example.apptest.userinterface.fragments.BaseFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 

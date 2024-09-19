@@ -12,7 +12,7 @@ import com.example.apptest.database.entity.Product
 import com.example.apptest.databinding.FragmentAddProductBinding
 import com.example.apptest.helper.MyApp
 import com.example.apptest.helper.NoTitleBar
-import com.example.apptest.userinterface.base_fragment.BaseFragment
+import com.example.apptest.userinterface.fragments.BaseFragment
 import kotlin.random.Random
 
 

@@ -1,4 +1,4 @@
-package com.example.apptest.userinterface.base_fragment
+package com.example.apptest.userinterface.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
