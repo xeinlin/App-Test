@@ -29,4 +29,7 @@ interface ProductDAO {
     @Update
     fun update(product: Product)
 
+    @Query("SELECT * FROM product WHERE price <= :price ORDER BY name")
+    fun getProductsByMaxPrice(price: Double): List<Product>
+
 }

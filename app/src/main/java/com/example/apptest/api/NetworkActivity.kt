@@ -151,8 +151,6 @@ private class GridAdapter(val items: List<Movie>) : BaseAdapter() {
             .load(posterUrl)
             .into(binding.gridimg)
 
-
-
         return binding.root
     }
 

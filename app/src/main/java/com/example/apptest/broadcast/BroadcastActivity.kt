@@ -6,13 +6,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import com.example.apptest.BaseActivity
 import com.example.apptest.databinding.ActivityBroadcastBinding
-import com.example.apptest.lifecycle.LifecycleActivity
 
 class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
 
@@ -26,14 +24,15 @@ class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
 
     }
 
-    private lateinit var timeReceiver: TickTimeReceiver
-    private lateinit var customReceiver: CustomReceiver
-    private val customActionName = "customBoradcastAction"
     override val pageTitle: String get() = "Broadcast Receiver"
 
     override fun setUpViewBinding(layoutInflater: LayoutInflater): ActivityBroadcastBinding {
         return ActivityBroadcastBinding.inflate(layoutInflater)
     }
+
+    private lateinit var timeReceiver: TickTimeReceiver
+    private lateinit var customReceiver: CustomReceiver
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,20 +42,22 @@ class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
 
         binding.buttonCustomBroadcast.setOnClickListener {
             val intent = Intent()
-            intent.setAction(customActionName)
+            intent.setAction(CUSTOM_ACTION_NAME)
             sendBroadcast(intent)
         }
-
     }
 
+
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     override fun onResume() {
         super.onResume()
-        val filter = IntentFilter().also { it.addAction(Intent.ACTION_TIME_TICK) }
+
+        val filter: IntentFilter = IntentFilter().also { it.addAction(Intent.ACTION_TIME_TICK) }
         registerReceiver(timeReceiver, filter)
 
-        val customFilter = IntentFilter().also { it.addAction(customActionName) }
+        val customFilter: IntentFilter = IntentFilter().also { it.addAction(CUSTOM_ACTION_NAME) }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(customReceiver, customFilter, RECEIVER_EXPORTED)
+            registerReceiver(customReceiver, customFilter, RECEIVER_NOT_EXPORTED)
         } else {
             registerReceiver(customReceiver, customFilter)
         }
@@ -68,15 +69,27 @@ class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
         unregisterReceiver(customReceiver)
     }
 
-    class AirplaneModeReceiver : BroadcastReceiver() {
-        @SuppressLint("UnsafeProtectedBroadcastReceiver")
-        override fun onReceive(context: Context?, p1: Intent?) {
-            Log.d("TAG", "AirplaneModeReceiver Received")
-            Log.d("TAG", "Broadcast has intent = ${p1 != null}")
-            p1?.let {
-                Log.d("TAG", "Is Airplane Mode )n = ${p1.getBooleanExtra("state", false)}")
-            }
 
+    class AirplaneModeReceiver : BroadcastReceiver() {
+
+        interface AirplaneModeListener {
+            fun onAirplaneModeChanged(isAirplaneModeOn: Boolean)
+        }
+
+        companion object {
+            var listeners: ArrayList<AirplaneModeListener> = ArrayList()
+        }
+
+        @SuppressLint("UnsafeProtectedBroadcastReceiver")
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            Log.d("TAG", "AirplaneModeReceiver Received")
+            p1?.let { intent ->
+                val isAirplaneModeOn = intent.getBooleanExtra("state", false)
+                listeners.forEach {
+                    it.onAirplaneModeChanged(isAirplaneModeOn)
+                }
+                Log.d("TAG", "Is Airplane Mode On = $isAirplaneModeOn")
+            }
         }
 
     }
@@ -84,6 +97,9 @@ class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
     class TickTimeReceiver : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
             Log.d("TAG", "TickTimeReceiver Received")
+
         }
+
     }
+
 }
