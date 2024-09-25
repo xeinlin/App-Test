@@ -7,6 +7,28 @@
     android:orientation="vertical"
     tools:context=".observer.ObserverActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/btn_show_fragments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Fragments"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_random_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Random Number"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_one"
         android:layout_width="match_parent"

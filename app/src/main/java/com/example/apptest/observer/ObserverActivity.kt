@@ -1,5 +1,6 @@
 package com.example.apptest.observer
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -14,8 +15,13 @@ import com.example.apptest.databinding.ActivityObserverBinding
 import com.example.apptest.databinding.FragmentObserverBinding
 import com.example.apptest.helper.NoTitleBar
 import com.example.apptest.userinterface.fragments.BaseFragment
+import com.example.apptest.viewmodel.MyVM
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ObserverActivity : BaseActivity<ActivityObserverBinding>() {
+
+    private val myVM: MyVM by viewModel()
 
     companion object {
         fun getInstance(context: Context): Intent {
@@ -32,6 +38,17 @@ class ObserverActivity : BaseActivity<ActivityObserverBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.btnShowFragments.setOnClickListener {
+            createFragments()
+        }
+
+        binding.btnRandomNumber.setOnClickListener {
+            myVM.getRandomNumber()
+        }
+
+    }
+
+    private fun createFragments() {
         addFragment(ObserverFragment(), R.id.container_one)
         addFragment(ObserverFragment(), R.id.container_two)
         addFragment(ObserverFragment(), R.id.container_three)
@@ -47,6 +64,8 @@ class ObserverActivity : BaseActivity<ActivityObserverBinding>() {
     class ObserverFragment : BaseFragment<FragmentObserverBinding>(), NoTitleBar,
         BroadcastActivity.AirplaneModeReceiver.AirplaneModeListener {
 
+        private val myVM: MyVM by activityViewModel()
+
         override fun setupViewBinding(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -55,14 +74,28 @@ class ObserverActivity : BaseActivity<ActivityObserverBinding>() {
             return FragmentObserverBinding.inflate(inflater, container, false)
         }
 
+        @SuppressLint("SetTextI18n")
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
             BroadcastActivity.AirplaneModeReceiver.listeners.add(this)
+
+            myVM.data.observe(viewLifecycleOwner) {
+                binding.tvLabelOne.text = "LiveData: Random = $it."
+            }
+
+            myVM.publishSubject
+                .doOnNext { binding.tvLabelTwo.text = "Publish: Random = $it." }
+                .subscribe()
+
+            myVM.behaviorSubject
+                .doOnNext { binding.tvLabelThree.text = "Behaviour: Random = $it." }
+                .subscribe()
         }
 
         override fun onAirplaneModeChanged(isAirplaneModeOn: Boolean) {
-            binding.tvHello.text = if (isAirplaneModeOn) "Airplane Mode On" else "Airplane Mode Off"
+            binding.tvLabelOne.text =
+                if (isAirplaneModeOn) "Airplane Mode On" else "Airplane Mode Off"
         }
 
     }

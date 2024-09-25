@@ -11,12 +11,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import com.example.apptest.BaseActivity
 import com.example.apptest.databinding.ActivityBroadcastBinding
+import com.example.apptest.helper.AirplaneModeChange
+import org.greenrobot.eventbus.EventBus
 
 class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
 
     companion object {
 
-        const val CUSTOM_ACTION_NAME = "customBroadcastAction"
+        const val CUSTOM_ACTION_NAME: String = "customBroadcastAction"
 
         fun getInstance(context: Context): Intent {
             return Intent(context, BroadcastActivity::class.java)
@@ -29,6 +31,7 @@ class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
     override fun setUpViewBinding(layoutInflater: LayoutInflater): ActivityBroadcastBinding {
         return ActivityBroadcastBinding.inflate(layoutInflater)
     }
+
 
     private lateinit var timeReceiver: TickTimeReceiver
     private lateinit var customReceiver: CustomReceiver
@@ -46,7 +49,6 @@ class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
             sendBroadcast(intent)
         }
     }
-
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     override fun onResume() {
@@ -69,7 +71,6 @@ class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
         unregisterReceiver(customReceiver)
     }
 
-
     class AirplaneModeReceiver : BroadcastReceiver() {
 
         interface AirplaneModeListener {
@@ -88,6 +89,7 @@ class BroadcastActivity : BaseActivity<ActivityBroadcastBinding>() {
                 listeners.forEach {
                     it.onAirplaneModeChanged(isAirplaneModeOn)
                 }
+                EventBus.getDefault().post(AirplaneModeChange())
                 Log.d("TAG", "Is Airplane Mode On = $isAirplaneModeOn")
             }
         }
